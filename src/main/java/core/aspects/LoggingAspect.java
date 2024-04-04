@@ -1,10 +1,8 @@
 package core.aspects;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
 @Aspect
 public class LoggingAspect {
@@ -22,6 +20,7 @@ public class LoggingAspect {
     @Before("execution(* *(..))") // Zielt auf alle Methoden im Paket
     public void logBefore(JoinPoint joinPoint) {
         System.out.println(RED + "Methode aufgerufen: " + YELLOW + joinPoint.getSignature().getName() + RESET);
+//        System.out.println(GREEN + "*************************************************************************" + RESET);
     }
 
     @AfterReturning(pointcut = "execution(* *(..))", returning = "result") // Nach erfolgreichem Abschluss der Methode
